@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro Escolar</title>
+</head>
+<body>
+    <h2>Formulario de Registro para Colegio de Secundaria</h2>
+    <form action="procesar_registro.php" method="post">
+        <!-- Campos de Texto -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required>
+        <br><br>
+
+        <!-- Botones de Radio -->
+        <p>Género:</p>
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
+        <label for="masculino">Masculino</label><br>
+        <input type="radio" id="femenino" name="genero" value="femenino" required>
+        <label for="femenino">Femenino</label><br>
+        <input type="radio" id="otro" name="genero" value="otro" required>
+        <label for="otro">Otro</label>
+        <br><br>
+
+        <!-- Casillas de Verificación -->
+        <p>Intereses:</p>
+        <input type="checkbox" id="deportes" name="intereses" value="deportes">
+        <label for="deportes">Deportes</label><br>
+        <input type="checkbox" id="musica" name="intereses" value="musica">
+        <label for="musica">Música</label><br>
+        <input type="checkbox" id="arte" name="intereses" value="arte">
+        <label for="arte">Arte</label><br>
+        <input type="checkbox" id="ciencia" name="intereses" value="ciencia">
+        <label for="ciencia">Ciencia</label>
+        <br><br>
+
+        <!-- Listas Desplegables -->
+        <label for="grado">Grado:</label>
+        <select id="grado" name="grado" required>
+            <option value="7">7º Grado</option>
+            <option value="8">8º Grado</option>
+            <option value="9">9º Grado</option>
+            <option value="10">Primer Año General</option>
+            <option value="11">Segundo Año General</option>
+            <option value="12">Primer Año Técnico</option>
+        </select>
+        <br><br>
+
+        <!-- Área de Texto -->
+        <label for="comentarios">Comentarios Adicionales:</label>
+        <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Escribe tus comentarios aquí..."></textarea>
+        <br><br>
+
+        <!-- Campo de Fecha -->
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+        <br><br>
+
+        <!-- Campo de Hora -->
+        <label for="hora_entrevista">Hora de Entrevista:</label>
+        <input type="time" id="hora_entrevista" name="hora_entrevista" required>
+        <br><br>
+
+        <!-- Botón de Envío -->
+        <input type="submit" value="Registrar">
+    </form>
+</body>
+</html>
