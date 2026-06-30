@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Preferencias de Géneros Literarios</title>
+</head>
+<body>
+    <h2>Encuesta de Preferencias de Géneros Literarios</h2>
+    <form action="procesar_encuesta.php" method="post">
+        <!-- Campo de Nombre -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Con inicial mayúscula..." required>
+        <br><br>
+
+        <!-- Campo de Correo Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="nombre@dominio.com" required>
+        <br><br>
+
+        <!-- Campo de Géneros Literarios -->
+       <form method="post">
+        ¿Cuál es tu género literario favorito?:
+        <select>
+            <option value="1">Ficción</option>
+            <option value="2">No Ficción</option>
+            <option value="3">Fantasía</option>
+            <option value="4">Ciencia Ficción</option>
+            <option value="5">Romance</option>
+            <option value="6">Misterio</option>
+            <option value="7" selected>Terror</option>
+        </select>
+        <br><br>
+
+        <!-- Campo de Sugerencias -->
+        <label for="sugerencias">Sugerencias:</label>
+        <textarea id="sugerencias" name="sugerencias" rows="4" cols="50" placeholder="Sugerencias"></textarea>
+        <br><br>
+
+        <!-- Botón de Envío -->
+        <input type="submit" value="Enviar Encuesta">
+    </form>
+</body>
+</html>
