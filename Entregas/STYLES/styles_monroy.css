@@ -1,0 +1,11 @@
+p{
+    background-image: url(../Images/Captura.PNG);
+}
+input {
+    transition: all 0.3s ease;
+}
+input:hover {
+    color: blue;
+    transform: scale(1.05);
+
+}
