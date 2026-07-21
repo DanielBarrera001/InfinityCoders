@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../STYLES/styles_gaby.css"
     <title>Formulario de Registro Escolar</title>
 </head>
 <body>
-    <h2>Formulario de Registro para Colegio de Secundaria</h2>
+    <h2 class="Titulo principal">Formulario de Registro para Colegio de Secundaria</h2>
     <form action="procesar_registro.php" method="post">
         <!-- Campos de texto -->
+         <div>
          <label for="nombre">Nombre:</label>
          <input type="text" id="nombre" name="nombre" required>
          <br><br>
@@ -17,6 +17,7 @@
          <label for="apellido">Apellido:</label>
          <input type="text" id="apellido" name="apellido" required>
          <br><br>
+         </div>
 
          <!-- Botones de radio -->
           <p>Género:</p>
