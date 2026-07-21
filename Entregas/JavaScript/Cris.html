@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>
+        Ingresa tu nombre aquí
+    </label>
+    <input type="text" id="nombre">
+    <button id="ImprimirNombre">Enviar</button>
+    <p id="NombreAparece">Tu nombre aparecerá aquí</p>
+    <script>
+        const persona1 = document.getElementById('nombre');
+        const campoNombre = document.getElementById('NombreAparece');
+        const boton = document.getElementById('ImprimirNombre');
+        boton.addEventListener('click', function(){
+            campoNombre.textContent = persona1.value;
+        }); 
+    </script>
+</body>
+</html>
