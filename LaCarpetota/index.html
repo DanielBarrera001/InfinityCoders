@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinity Coders · Mapa Cósmico</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Canvas donde main.js dibuja el fondo de estrellas animado -->
+  <canvas id="starfield"></canvas>
+
+  <header class="navbar">
+    <div class="nav-izquierda">
+      <div class="nav-brand">
+        <span class="icono">✦</span>
+        Infinity Coders <span class="separador">//</span> <span class="subtitulo-marca">Mapa Cósmico</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="activo">Inicio</a>
+        <a href="destinos.html">Destinos</a>
+        <a href="asistente-ia.html">Asistente IA</a>
+      </nav>
+    </div>
+
+    <!-- Badge de estado: el punto y el % los actualiza main.js -->
+    <div class="estado-sistema">
+      <span class="estado-punto"></span>
+      <span id="estado-texto">Sistema en línea</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <p class="hero-eyebrow aparece">Sistema solar · Exploración guiada</p>
+      <h1 class="hero-title aparece" style="animation-delay: 0.1s">
+        Un <span class="degradado">mapa cósmico</span><br />
+        para explorar el universo
+      </h1>
+      <p class="hero-subtitulo aparece" style="animation-delay: 0.2s">
+        Bienvenido al centro de comando de Infinity Coders. Recorré cada
+        destino del sistema solar y, más adelante, conversá con nuestro
+        asistente de IA para armar tu propio itinerario espacial.
+      </p>
+
+      <!-- Reloj de misión: cuenta el tiempo que llevás navegando la página -->
+      <div class="reloj-mision aparece" style="animation-delay: 0.25s">
+        <span class="reloj-etiqueta">Tiempo de misión (MET)</span>
+        <span class="reloj-valor" id="reloj-valor">T+ 00:00:00</span>
+      </div>
+
+      <div class="hero-acciones aparece" style="animation-delay: 0.3s">
+        <a href="destinos.html" class="btn btn-primario">🚀 Explorar destinos</a>
+        <a href="asistente-ia.html" class="btn btn-secundario">✦ Asistente IA</a>
+      </div>
+    </section>
+
+    <!-- ================= MISIÓN ================= -->
+    <section class="mision" id="proyecto">
+      <h2>La misión</h2>
+      <p>
+        Este proyecto es un recorrido interactivo por los destinos del sistema
+        solar. Cada planeta es una parada en el mapa, con información pensada
+        para quien quiera aprender explorando. A medida que avancemos, vamos a
+        sumar más destinos y un asistente de inteligencia artificial que te
+        va a guiar en el camino.
+      </p>
+    </section>
+
+    <!-- ================= TRIPULACIÓN ================= -->
+    <section class="tripulacion" id="equipo">
+      <h2>Tripulación Infinity Coders</h2>
+      <p class="subtitulo-seccion">Cuatro personas, un mismo destino.</p>
+
+      <div class="crew-grid">
+        <article class="crew-card">
+          <div class="crew-avatar">MO</div>
+          <h3>Mónica</h3>
+          <p class="crew-rol">Comandante de interfaz</p>
+          <p class="crew-desc">Diseño y estructura de la página principal.</p>
+        </article>
+
+        <article class="crew-card">
+          <div class="crew-avatar">AD</div>
+          <h3>Adriel</h3>
+          <p class="crew-rol">Piloto de navegación</p>
+          <p class="crew-desc">Interactividad y animaciones de la página principal.</p>
+        </article>
+
+        <article class="crew-card">
+          <div class="crew-avatar">GA</div>
+          <h3>Gabriela</h3>
+          <p class="crew-rol">Cartógrafa de destinos</p>
+          <p class="crew-desc">Construcción del mapa de destinos del sistema solar.</p>
+        </article>
+
+        <article class="crew-card">
+          <div class="crew-avatar">CR</div>
+          <h3>Cristopher</h3>
+          <p class="crew-rol">Ingeniero de sistemas</p>
+          <p class="crew-desc">Estructura y datos de las tarjetas de destinos.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= VISTA PREVIA DE DESTINOS ================= -->
+    <section class="destinos-preview">
+      <h2>¿Listo para despegar?</h2>
+      <p>Ocho planetas te esperan, cada uno con su propia historia.</p>
+      <a href="destinos.html" class="btn btn-primario">Ver todos los destinos</a>
+    </section>
+
+  </main>
+
+  <footer>
+    Infinity Coders © 2026 — <span class="footer-destacado">Proyecto Código TBox</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

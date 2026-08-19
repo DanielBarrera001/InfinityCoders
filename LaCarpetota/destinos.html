@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinos · Infinity Coders</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <canvas id="starfield"></canvas>
+
+  <header class="navbar">
+    <div class="nav-izquierda">
+      <div class="nav-brand">
+        <span class="icono">✦</span>
+        Infinity Coders <span class="separador">//</span> <span class="subtitulo-marca">Mapa Cósmico</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="destinos.html" class="activo">Destinos</a>
+        <a href="asistente-ia.html">Asistente IA</a>
+      </nav>
+    </div>
+
+    <div class="estado-sistema">
+      <span class="estado-punto"></span>
+      <span id="estado-texto">Sistema en línea</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="encabezado-pagina">
+      <h1 class="aparece">Destinos del <span class="degradado">sistema solar</span></h1>
+      <p class="aparece" style="animation-delay: 0.1s">
+        Ocho planetas, ocho paradas distintas. Elegí una tarjeta para conocer sus datos.
+      </p>
+    </section>
+
+    <section class="grid-planetas">
+
+      <!-- Cada tarjeta define su propio color de resplandor con --sombra-planeta -->
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #ffcf8a, #b5541a); --sombra-planeta: rgba(255,150,60,0.35);"></div>
+        </div>
+        <h3>Mercurio</h3>
+        <p class="planeta-tipo">Planeta rocoso</p>
+        <p class="planeta-desc">El más cercano al Sol y el más pequeño del sistema solar.</p>
+        <div class="planeta-datos">
+          <span><strong>88 días</strong>Año</span>
+          <span><strong>0</strong>Lunas</span>
+          <span><strong>-173°C</strong>Mín. noct.</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #ffe6b0, #d98a3d); --sombra-planeta: rgba(255,200,120,0.35);"></div>
+        </div>
+        <h3>Venus</h3>
+        <p class="planeta-tipo">Planeta rocoso</p>
+        <p class="planeta-desc">El planeta más caliente, cubierto por densas nubes de ácido sulfúrico.</p>
+        <div class="planeta-datos">
+          <span><strong>225 días</strong>Año</span>
+          <span><strong>0</strong>Lunas</span>
+          <span><strong>464°C</strong>Sup.</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #7ec8ff, #1d4f9e); --sombra-planeta: rgba(0,210,255,0.4);"></div>
+        </div>
+        <h3>Tierra</h3>
+        <p class="planeta-tipo">Planeta rocoso</p>
+        <p class="planeta-desc">Nuestro hogar. El único planeta conocido con vida.</p>
+        <div class="planeta-datos">
+          <span><strong>365 días</strong>Año</span>
+          <span><strong>1</strong>Luna</span>
+          <span><strong>15°C</strong>Promedio</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #ff9d6c, #a1341a); --sombra-planeta: rgba(255,110,70,0.35);"></div>
+        </div>
+        <h3>Marte</h3>
+        <p class="planeta-tipo">Planeta rocoso</p>
+        <p class="planeta-desc">El planeta rojo, con el volcán más grande del sistema solar.</p>
+        <div class="planeta-datos">
+          <span><strong>687 días</strong>Año</span>
+          <span><strong>2</strong>Lunas</span>
+          <span><strong>-63°C</strong>Promedio</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #ffe1b8, #b9793e); --sombra-planeta: rgba(255,210,150,0.35);"></div>
+        </div>
+        <h3>Júpiter</h3>
+        <p class="planeta-tipo">Gigante gaseoso</p>
+        <p class="planeta-desc">El planeta más grande, conocido por su Gran Mancha Roja.</p>
+        <div class="planeta-datos">
+          <span><strong>12 años</strong>Año</span>
+          <span><strong>95</strong>Lunas</span>
+          <span><strong>-108°C</strong>Promedio</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #f5e2b3, #b89a5f); --sombra-planeta: rgba(255,209,102,0.35);"></div>
+        </div>
+        <h3>Saturno</h3>
+        <p class="planeta-tipo">Gigante gaseoso</p>
+        <p class="planeta-desc">Famoso por su espectacular sistema de anillos de hielo y roca.</p>
+        <div class="planeta-datos">
+          <span><strong>29 años</strong>Año</span>
+          <span><strong>146</strong>Lunas</span>
+          <span><strong>-139°C</strong>Promedio</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #b6f0f0, #3f9ea6); --sombra-planeta: rgba(0,245,212,0.35);"></div>
+        </div>
+        <h3>Urano</h3>
+        <p class="planeta-tipo">Gigante de hielo</p>
+        <p class="planeta-desc">Gira "acostado" sobre su propio eje, casi de lado.</p>
+        <div class="planeta-datos">
+          <span><strong>84 años</strong>Año</span>
+          <span><strong>27</strong>Lunas</span>
+          <span><strong>-197°C</strong>Promedio</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-planeta">
+        <div class="planeta-orbita">
+          <div class="planeta-esfera" style="background: radial-gradient(circle at 35% 30%, #9db8ff, #2f4faf); --sombra-planeta: rgba(138,43,226,0.4);"></div>
+        </div>
+        <h3>Neptuno</h3>
+        <p class="planeta-tipo">Gigante de hielo</p>
+        <p class="planeta-desc">El más lejano del Sol, con los vientos más fuertes del sistema solar.</p>
+        <div class="planeta-datos">
+          <span><strong>165 años</strong>Año</span>
+          <span><strong>16</strong>Lunas</span>
+          <span><strong>-201°C</strong>Promedio</span>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    Infinity Coders © 2026 — <span class="footer-destacado">Proyecto Código TBox</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

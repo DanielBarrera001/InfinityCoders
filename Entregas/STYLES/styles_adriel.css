@@ -1,0 +1,11 @@
+h2 {
+    color: purple;
+    font-weight: bold;
+    font-family: Georgia, sans-serif;
+}
+label {
+    color: blue;
+    font-size: 14px;
+    font-family: Georgia, sans-serif;
+    font-weight: bold;
+}
