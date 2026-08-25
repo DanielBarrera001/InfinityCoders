@@ -1,0 +1,808 @@
+
+:root {
+  /* Paleta oficial (según Generalidades.pdf) */
+  --bg-espacio: #0b0f19;    
+  --purpura: #8a2be2;         
+  --azul-neon: #00d2ff;       
+  --cian: #00f5d4;            
+  --amarillo: #ffd166;        
+  --texto: #f8f9fa;           
+
+  /* Variantes derivadas (para fondos de tarjetas, bordes suaves, etc.) */
+  --bg-tarjeta: #101526;
+  --bg-tarjeta-alt: #131a30;
+  --borde-suave: rgba(248, 249, 250, 0.12);
+  --texto-tenue: #a9b0c3;
+
+  /* Tipografía (según Generalidades.pdf) */
+  --fuente-principal: "Segoe UI", system-ui, sans-serif;
+
+  /* Otros tokens reutilizables */
+  --radio-borde: 14px;
+  --sombra-neon-cian: 0 0 18px rgba(0, 245, 212, 0.35);
+  --sombra-neon-purpura: 0 0 18px rgba(138, 43, 226, 0.4);
+  --sombra-neon-azul: 0 0 18px rgba(0, 210, 255, 0.35);
+  --transicion: 0.25s ease;
+}
+
+/* ---------- 2. RESET BÁSICO ----------
+   Quita márgenes/paddings por defecto del navegador para que
+   todos partamos del mismo punto en cualquier PC. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; 
+}
+
+/* ---------- 3. BASE DEL BODY ---------- */
+body {
+  background-color: var(--bg-espacio);
+  color: var(--texto);
+  font-family: var(--fuente-principal);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Nebulosa sutil de fondo, además de las estrellas que genera main.js */
+  background-image: radial-gradient(circle at 15% 20%, rgba(138, 43, 226, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(0, 210, 255, 0.1), transparent 45%);
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* Capa de estrellas: main.js inyecta <span class="star"> dentro de este contenedor */
+.stars-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: var(--texto);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: parpadeo 3s ease-in-out infinite;
+}
+
+/* Todo el contenido "real" va sobre la capa de estrellas */
+.contenido {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 4. UTILIDADES DE TEXTO / TIPOGRAFÍA ----------
+   Los mockups del profesor usan títulos en MAYÚSCULA, con
+   letter-spacing y un resplandor de neón: lo repetimos aquí
+   como una clase reutilizable (.titulo-hud) para toda la web. */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cian);
+  margin-bottom: 0.75rem;
+}
+
+.titulo-hud {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--azul-neon);
+  text-shadow: 0 0 18px rgba(0, 210, 255, 0.45);
+}
+
+h1.titulo-hud {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+}
+
+h2.titulo-hud {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  color: var(--texto-tenue);
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+.dato-curioso {
+  color: var(--amarillo);
+  font-weight: 600;
+}
+
+/* ---------- 5. LAYOUT GENERAL ---------- */
+.container {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+section {
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+.centrado {
+  text-align: center;
+}
+
+/* ---------- 6. NAV / ENCABEZADO ---------- */
+.nav-principal {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(11, 15, 25, 0.75);
+  border-bottom: 1px solid var(--borde-suave);
+}
+
+.nav-principal .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--texto);
+  font-size: 1.05rem;
+}
+
+.logo-icono {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cian);
+  box-shadow: 0 0 12px 3px rgba(0, 245, 212, 0.7);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--texto-tenue);
+  transition: color var(--transicion);
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--cian);
+}
+
+.nav-links a.activo {
+  color: var(--cian);
+}
+
+/* Reloj MET (Tiempo de Misión) en la esquina del nav — detalle temático */
+.met-clock {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--amarillo);
+  border: 1px solid rgba(255, 209, 102, 0.4);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--texto);
+  border-radius: 2px;
+}
+
+/* ---------- 7. BOTONES ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform var(--transicion), box-shadow var(--transicion), background var(--transicion);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primario {
+  background: linear-gradient(90deg, var(--purpura), var(--cian));
+  color: #04121a;
+}
+
+.btn-primario:hover,
+.btn-primario:focus-visible {
+  box-shadow: var(--sombra-neon-cian);
+  transform: translateY(-2px);
+}
+
+.btn-secundario {
+  background: transparent;
+  border-color: var(--purpura);
+  color: var(--texto);
+}
+
+.btn-secundario:hover,
+.btn-secundario:focus-visible {
+  box-shadow: var(--sombra-neon-purpura);
+  border-color: var(--cian);
+  transform: translateY(-2px);
+}
+
+/* ---------- 8. TARJETAS (componente base reutilizable) ---------- */
+.card {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-borde);
+  padding: 1.6rem;
+  transition: border-color var(--transicion), box-shadow var(--transicion), transform var(--transicion);
+}
+
+.card--purpura {
+  border-color: rgba(138, 43, 226, 0.5);
+}
+
+.card--purpura:hover {
+  box-shadow: var(--sombra-neon-purpura);
+  transform: translateY(-4px);
+}
+
+.card--cian {
+  border-color: rgba(0, 245, 212, 0.4);
+}
+
+.card--cian:hover {
+  box-shadow: var(--sombra-neon-cian);
+  transform: translateY(-4px);
+}
+
+/* ---------- 9. HERO (index.html) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 3rem;
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero p.subtitulo {
+  margin-block: 1.1rem 0;
+}
+
+/* Gráfico decorativo: anillos orbitales concéntricos con un punto girando */
+.hero-orbita {
+  position: relative;
+  width: min(360px, 100%);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.anillo {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(0, 210, 255, 0.35);
+  border-radius: 50%;
+}
+
+.anillo--2 {
+  inset: 15%;
+  border-color: rgba(138, 43, 226, 0.4);
+  animation: girar 14s linear infinite;
+}
+
+.anillo--3 {
+  inset: 32%;
+  border-color: rgba(0, 245, 212, 0.5);
+  animation: girar 9s linear infinite reverse;
+}
+
+.hero-nucleo {
+  position: absolute;
+  inset: 40%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #bfe9ff, var(--azul-neon) 55%, #063542 100%);
+  box-shadow: 0 0 40px 8px rgba(0, 210, 255, 0.55);
+}
+
+/* El punto se posiciona en el borde del anillo --2. Como ese
+   anillo ya gira (animation: girar, definida arriba), el punto
+   "viaja" con él sin necesitar su propia animación. */
+.hero-punto {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  box-shadow: 0 0 10px 3px rgba(255, 209, 102, 0.8);
+  top: -6px;
+  left: calc(50% - 6px);
+}
+
+/* ---------- 10. SECCIÓN "SOBRE LA MISIÓN" ---------- */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+}
+
+.feature-icono {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 245, 212, 0.12);
+  color: var(--cian);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--texto);
+}
+
+.feature-card p {
+  color: var(--texto-tenue);
+  font-size: 0.95rem;
+}
+
+/* ---------- 11. TRIPULACIÓN ---------- */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+}
+
+.crew-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #04121a;
+  background: linear-gradient(135deg, var(--purpura), var(--azul-neon));
+}
+
+.crew-card h3 {
+  color: var(--amarillo);
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.crew-card .crew-rol {
+  color: var(--cian);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.crew-card p.crew-desc {
+  color: var(--texto-tenue);
+  font-size: 0.88rem;
+}
+
+/* ---------- 12. ASISTENTE DE MISIÓN (placeholder IA) ---------- */
+.asistente-panel {
+  margin-top: 2rem;
+  border: 1px solid rgba(138, 43, 226, 0.5);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.2rem 0;
+}
+
+.chip {
+  border: 1px solid var(--borde-suave);
+  background: var(--bg-tarjeta-alt);
+  color: var(--texto);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color var(--transicion), color var(--transicion);
+}
+
+.chip:hover,
+.chip:focus-visible {
+  border-color: var(--cian);
+  color: var(--cian);
+}
+
+.asistente-salida {
+  min-height: 70px;
+  border: 1px dashed rgba(0, 245, 212, 0.4);
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 0.92rem;
+  color: var(--texto-tenue);
+}
+
+.asistente-salida strong {
+  color: var(--cian);
+}
+
+/* ---------- 13. DESTINOS.HTML — SELECTOR DE PLANETAS ---------- */
+.selector-planetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-block: 2rem;
+}
+
+.btn-planeta {
+  border: 1px solid var(--borde-suave);
+  background: var(--bg-tarjeta);
+  color: var(--texto-tenue);
+  border-radius: 10px;
+  padding: 0.6rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transicion);
+}
+
+.btn-planeta:hover,
+.btn-planeta:focus-visible {
+  border-color: var(--azul-neon);
+  color: var(--texto);
+}
+
+.btn-planeta.activo {
+  background: var(--purpura);
+  border-color: var(--purpura);
+  color: #fff;
+  box-shadow: var(--sombra-neon-purpura);
+}
+
+/* ---------- 14. TARJETA DE DETALLE DEL PLANETA ---------- */
+.detalle-planeta {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.visual-planeta {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.orbita-decorativa {
+  position: absolute;
+  inset: 6%;
+  border: 1px dashed var(--planeta-color, var(--azul-neon));
+  border-radius: 50%;
+  opacity: 0.55;
+  animation: girar 18s linear infinite;
+}
+
+/* La esfera lee dos variables CSS que main.js cambia por JS
+   según el planeta elegido: --planeta-color (tono principal) y
+   --planeta-color-oscuro (sombra). Así reutilizamos UNA sola
+   clase para los 8 planetas, en vez de escribir 8 estilos distintos. */
+.esfera-planeta {
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--planeta-color, #ccc) 70%, white), var(--planeta-color, #888) 55%, var(--planeta-color-oscuro, #222) 100%);
+  box-shadow: 0 0 45px 8px color-mix(in srgb, var(--planeta-color, #888) 45%, transparent);
+  position: relative;
+  z-index: 1;
+}
+
+/* Franjas de gas para los gigantes gaseosos (Júpiter/Saturno/Urano/Neptuno) */
+.esfera-planeta.con-bandas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 6px,
+    transparent 6px,
+    transparent 16px
+  );
+}
+
+/* Anillo de Saturno */
+.anillo-saturno {
+  position: absolute;
+  width: 130%;
+  height: 34%;
+  border: 3px solid color-mix(in srgb, var(--planeta-color, #d8c28a) 70%, white);
+  border-radius: 50%;
+  opacity: 0.75;
+  transform: rotate(-18deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tag-clasificacion {
+  display: inline-block;
+  background: rgba(0, 210, 255, 0.12);
+  color: var(--azul-neon);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+.info-planeta h2 {
+  margin-bottom: 0.6rem;
+}
+
+.info-planeta .descripcion {
+  color: var(--texto-tenue);
+  margin-bottom: 1.4rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--borde-suave);
+  border: 1px solid var(--borde-suave);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stat {
+  background: var(--bg-tarjeta);
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--purpura);
+}
+
+.stat:nth-child(2) {
+  border-left-color: var(--amarillo);
+}
+
+.stat:nth-child(4) {
+  border-left-color: var(--amarillo);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--texto-tenue);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-valor {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--amarillo);
+}
+
+/* ---------- 15. SIMULADOR DE PESO ---------- */
+.simulador {
+  margin-top: 2rem;
+  border: 1px dashed rgba(0, 245, 212, 0.5);
+}
+
+.simulador-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.simulador-fila input[type="number"] {
+  background: var(--bg-espacio);
+  border: 1px solid var(--borde-suave);
+  color: var(--texto);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  width: 120px;
+  font-size: 1rem;
+}
+
+.simulador-fila input[type="number"]:focus-visible {
+  outline: 2px solid var(--cian);
+  border-color: var(--cian);
+}
+
+.resultado-peso {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--cian);
+  font-weight: 700;
+}
+
+/* ---------- 16. FOOTER ---------- */
+footer {
+  border-top: 1px solid var(--borde-suave);
+  padding-block: 2rem;
+  color: var(--texto-tenue);
+  font-size: 0.85rem;
+}
+
+footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+footer a:hover {
+  color: var(--cian);
+}
+
+/* ---------- 17. ANIMACIONES ---------- */
+@keyframes parpadeo {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respeta a quienes prefieren menos movimiento en pantalla */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 18. ACCESIBILIDAD: FOCO VISIBLE ---------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cian);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 19. RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .detalle-planeta {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-planeta {
+    width: min(240px, 70%);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-espacio);
+    border-bottom: 1px solid var(--borde-suave);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 6%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transicion);
+  }
+
+  .nav-links.abierto {
+    max-height: 320px;
+    padding-block: 1rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--borde-suave);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
